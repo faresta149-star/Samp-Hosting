@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SAMP HOSTING CHISATOBOBA</title>
+
+  <!-- Font (optional, looks closer to screenshot) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#777777;
+      --card:#616161;
+      --card-2:#555555;
+      --accent:#11efff;
+      --accent-2:#0044ff;
+      --muted:#fcfcfc;
+      --glass: rgba(37, 37, 37, 0.03);
+    }
+
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Poppins",system-ui,Segoe UI,Roboto,Arial;
+      background:linear-gradient(180deg,#0ca6b1 0%, #0010f593 60%), var(--bg);
+      color:#eee;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* subtle background grid & large watermark text */
+    body::before{
+      content:"";
+      position:fixed;inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity:0.55;
+      pointer-events:none;
+      mix-blend-mode:overlay;
+      z-index:0;
+    }
+    .watermark{
+      position:fixed;inset:0;pointer-events:none;z-index:0;
+      display:flex;align-items:center;justify-content:center;
+      opacity:0.12;font-weight:900;font-size:clamp(6rem,18vw,14rem);
+      color:var(--accent);
+      letter-spacing:4px;
+      transform:translateY(-3%);
+      user-select:none;
+    }
+
+    /* Page container */
+    .page{
+      position:relative;z-index:1;
+      max-width:1200px;margin:0 auto;padding:28px 20px 120px;
+    }
+
+    /* NAV - centered with pill buttons */
+    nav{
+      display:flex;justify-content:center;margin-top:8px;margin-bottom:28px;
+    }
+    .nav-list{
+      display:flex;gap:18px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.2));
+      padding:8px 14px;border-radius:8px;backdrop-filter: blur(4px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+    .nav-list a{
+      color:#fff;text-decoration:none;font-weight:600;padding:8px 10px;border-radius:6px;
+      display:inline-block;transition:all .18s;
+      background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(255,255,255,0.02));
+      box-shadow: 0 6px 10px rgba(0,0,0,0.45);
+    }
+    .nav-list a:hover{transform:translateY(-2px);filter:brightness(1.05)}
+
+    /* HERO */
+    .hero{
+      text-align:center;padding:40px 20px 20px;position:relative;
+      background-image:
+        radial-gradient(circle at 50% 40%, rgba(255,20,50,0.06) 0%, rgba(0,0,0,0) 40%),
+        linear-gradient(180deg, rgba(39, 39, 39, 0.25), rgba(0,0,0,0.45));
+      border-radius:10px;
+      box-shadow: inset 0 80px 80px rgba(0,0,0,0.35);
+    }
+
+    .hero .title{
+      font-size:clamp(30px,6vw,64px);
+      color:var(--accent);
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      margin-bottom:12px;
+      text-shadow: 0 6px 18px rgba(255,17,68,0.14);
+    }
+    .hero .lead{
+      max-width:920px;margin:0 auto 22px;color:#dcdcdc;font-weight:500;font-size:1.02rem;
+      opacity:0.95;
+    }
+    .hero .cta-row{display:flex;gap:16px;justify-content:center;margin-top:10px;margin-bottom:34px}
+    .btn{
+      display:inline-block;padding:12px 20px;border-radius:10px;font-weight:700;text-decoration:none;
+      cursor:pointer;border:0;
+    }
+    .btn.btn-primary{
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;box-shadow:0 12px 30px rgba(255,17,68,0.18);
+      transition:transform .15s,box-shadow .15s;
+    }
+    .btn.btn-primary:hover{transform:translateY(-3px);box-shadow:0 22px 40px rgba(255,17,68,0.25)}
+    .btn.btn-outline{
+      background:transparent;border:2px solid rgba(255,255,255,0.08);color:#fff;padding:10px 18px;border-radius:10px;
+      text-decoration:underline 2px rgba(255,255,255,0.08);
+    }
+    .btn.btn-outline:hover{background:rgba(255,255,255,0.02)}
+
+    /* Price cards row */
+    .prices{
+      display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:10px;
+    }
+    .price-card{
+      width:320px;min-height:260px;padding:22px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.12));
+      border-radius:14px;border:1px solid rgba(255,255,255,0.02);backdrop-filter: blur(4px);
+      text-align:left;color:#ddd;box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      position:relative;overflow:hidden;
+    }
+    .price-card .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .price-card h4{color:var(--accent);font-weight:700}
+    .price-card .price{font-size:1.35rem;font-weight:800;color:var(--accent);margin-bottom:8px}
+    .price-card ul{margin:8px 0 18px;list-style:disc;padding-left:18px;color:var(--muted)}
+    .price-card .buy{
+      display:block;text-align:center;margin-top:8px;padding:12px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;font-weight:800;text-decoration:none;
+      box-shadow:0 8px 20px rgba(255,17,68,0.12)
+    }
+
+    /* FEATURE SECTION */
+    .features{
+      margin-top:48px;padding:54px 18px 38px;background:transparent;
+      text-align:center;
+    }
+    .features h2{
+      font-size:1.6rem;margin-bottom:28px;font-weight:800;color:#fff;
+    }
+
+    .feature-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start;
+    }
+
+    .feature{
+      background:linear-gradient(180deg, rgba(63, 63, 63, 0.01), rgba(0,0,0,0.05));
+      border-radius:12px;padding:26px 20px;box-shadow:0 10px 30px rgba(0,0,0,0.6);
+      text-align:center;color:#ddd;border:1px solid rgba(255,255,255,0.02);
+    }
+    .icon-wrap{
+      width:72px;height:72px;margin:0 auto 14px;border-radius:12px;background:#0f0f0f;display:flex;align-items:center;justify-content:center;
+      box-shadow: 0 8px 30px rgba(255,17,68,0.06);
+    }
+    .feature h3{color:var(--accent);margin-bottom:12px;font-weight:700}
+    .feature p{color:var(--muted);font-size:.95rem;line-height:1.6}
+
+    /* CTA big rounded */
+    .cta-big{
+      margin:48px auto 0;max-width:900px;padding:30px;border-radius:14px;
+      background:linear-gradient(90deg, rgba(140,0,20,0.28) 0%, rgba(0,0,0,0.65) 100%);
+      box-shadow:0 18px 60px rgba(20, 20, 20, 0.6);
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+    }
+    .cta-big .left{color:#fff;font-weight:700;font-size:1.05rem}
+    .cta-actions{display:flex;gap:12px}
+    .btn.ghost{background:#242424;border:1px solid rgba(255,255,255,0.06);color:#fff;padding:10px 14px;border-radius:10px}
+    .btn.ghost:hover{background:#151515}
+
+    /* small screens */
+    @media (max-width:980px){
+      .feature-grid{grid-template-columns:repeat(2,1fr)}
+      .prices{flex-direction:column;align-items:center}
+      .cta-big{flex-direction:column;align-items:center;text-align:center}
+      .cta-big .left{margin-bottom:12px}
+    }
+    @media (max-width:640px){
+      .feature-grid{grid-template-columns:1fr}
+      .nav-list{gap:8px;padding:8px}
+      .hero .lead{padding:0 12px}
+    }
+
+    /* small decorative subtle thin grid lines overlay to mimic screenshot */
+    .hero::after{
+      content:"";position:absolute;inset:0;opacity:0.06;pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size:80px 80px;border-radius:10px;
+    }
+
+    /* accessibility: focus outline */
+    a:focus{outline:3px solid rgba(255,17,68,0.25);outline-offset:3px}
+  </style>
+</head>
+<body>
+
+  <!-- watermark large text -->
+  <div class="watermark" aria-hidden="true">SAMP CHISATO</div>
+
+  <div class="page">
+
+    <!-- NAV -->
+    <nav aria-label="Main navigation">
+      <div class="nav-list" role="menubar" aria-hidden="false">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="produk.html">Produk</a></li>
+        <li><a href="dimcord.html">Discord</a></li>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" role="banner">
+      <h1 class="title">SAMP HOSTING CHISATOBOBA</h1>
+      <p class="lead">
+        Hosting SAMP berperforma tinggi — didukung prosesor AMD Ryzen, proteksi DDoS,
+        dan uptime stabil untuk komunitas servermu. Cocok untuk PC & HP.
+      </p>
+
+      <div class="cta-row" role="region" aria-label="Primary actions">
+        <a class="btn btn-primary" href="produk.html">Lihat Paket</a>
+        <a class="btn btn-outline" href="produk.html">Order Sekarang</a>
+      </div>
+
+      <!-- price cards -->
+      <div class="prices" role="list">
+        <div class="price-card" role="listitem" aria-labelledby="budget-title">
+          <div class="head">
+            <h4 id="budget-title">SAMP Budget</h4>
+            <div class="price">Rp 50.000</div>
+          </div>
+          <ul>
+            <li>Slots: 50</li>
+            <li>SSD 20GB + Ryzen 5</li>
+            <li>DDoS Proteksi</li>
+            <li>Uptime 99.9%</li>
+          </ul>
+          <a class="buy" href="https://discord.com/invite/MXyfW4yrtg">Beli</a>
+        </div>
+
+        <div class="price-card" role="listitem" aria-labelledby="cloud-title">
+          <div class="head">
+            <h4 id="cloud-title">SAMP Cloud</h4>
+            <div class="price">Rp 150.000</div>
+          </div>
+          <ul>
+            <li>Slots: 150</li>
+            <li>SSD 50GB + Ryzen 7</li>
+            <li>Uptime 99.99%</li>
+            <li>Lokasi SG</li>
+          </ul>
+          <a class="buy" href="https://discord.com/invite/MXyfW4yrtg">Beli</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Features -->
+    <section class="features" aria-labelledby="features-title">
+      <h2 id="features-title">Kenapa Pilih SAMP RYZEN?</h2>
+
+      <div class="feature-grid">
+
+        <!-- feature 1 -->
+        <article class="feature" aria-labelledby="f1">
+          <div class="icon-wrap" aria-hidden="true">
+            <!-- lightning SVG -->
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="24" height="24" rx="6" fill="#0f0f0f"/>
+              <path d="M11 4L6 13h4l-1 7 9-12h-6z" fill="#ffb03d" stroke="rgba(255,17,68,0.05)" stroke-width="0.5"/>
+            </svg>
+          </div>
+          <h3 id="f1">Kecepatan Maksimal</h3>
+          <p>Infrastruktur NVMe + CPU Ryzen untuk latensi rendah dan performa stabil di kondisi puncak.</p>
+        </article>
+
+        <!-- feature 2 -->
+        <article class="feature" aria-labelledby="f2">
+          <div class="icon-wrap" aria-hidden="true">
+            <!-- shield SVG -->
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="24" height="24" rx="6" fill="#0f0f0f"/>
+              <path d="M12 3l7 3v5c0 5-3.6 9.9-7 11-3.4-1.1-7-6-7-11V6l7-3z" fill="#5bc0ff"/>
+            </svg>
+          </div>
+          <h3 id="f2">Proteksi DDoS</h3>
+          <p>Layered DDoS mitigation membuat server aman dari serangan sehingga pemain tetap nyaman.</p>
+        </article>
+
+        <!-- feature 3 -->
+        <article class="feature" aria-labelledby="f3">
+          <div class="icon-wrap" aria-hidden="true">
+            <!-- stopwatch SVG -->
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="24" height="24" rx="6" fill="#0f0f0f"/>
+              <path d="M12 7v6l3 1" stroke="#ff9fb1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 3h6" stroke="#ff9fb1" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="13" r="6.2" stroke="#ff9fb1" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <h3 id="f3">Uptime Terjamin</h3>
+          <p>SLA uptime tinggi, monitoring 24/7, dan support responsif saat ada masalah.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CTA big -->
+    <div class="cta-big" role="region" aria-label="Order call to action">
+      <div class="left">Siap punya server SAMP kencang?</div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="https://discord.com/invite/MXyfW4yrtg">Order Sekarang</a>
+        <a class="btn ghost" href="https://discord.com/invite/MXyfW4yrtg">Open Ticket</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

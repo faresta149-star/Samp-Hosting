@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tentang Discord Kami</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --accent: #20f8ffe3;
+  --muted: #ffffff;
+  --glass: rgba(0, 247, 255, 0.664);
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: var(--bg);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+nav{
+      display:flex;justify-content:center;margin-top:8px;margin-bottom:28px;
+    }
+    .nav-list{
+      display:flex;gap:18px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.2));
+      padding:8px 14px;border-radius:8px;backdrop-filter: blur(4px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+    .nav-list a{
+      color:#fff;text-decoration:none;font-weight:600;padding:8px 10px;border-radius:6px;
+      display:inline-block;transition:all .18s;
+      background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(255,255,255,0.02));
+      box-shadow: 0 6px 10px rgba(0,0,0,0.45);
+    }
+    .nav-list a:hover{transform:translateY(-2px);filter:brightness(1.05)}
+
+.hero {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(25, 0, 255, 0.9), rgb(0, 255, 255)),
+              url('') center/cover no-repeat;
+  padding: 100px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 110px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.02);
+  white-space: nowrap;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+.hero h1 {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 12px;
+  text-shadow: 0 0 15px rgb(32, 255, 255);
+}
+.hero p {
+  color: var(--muted);
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.9;
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 20px;
+}
+.cards {
+  max-width: 950px;
+  margin: 50px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.card {
+  display: flex;
+  gap: 18px;
+  background: rgba(24, 24, 24, 0.452);
+  border: 1px solid var(--glass);
+  border-radius: 12px;
+  padding: 22px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(32, 255, 255);
+}
+.icon {
+  font-size: 28px;
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(32, 255, 255);
+  flex-shrink: 0;
+}
+.card h3 {
+  color: var(--accent);
+  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(32, 255, 255);
+}
+.card p {
+  color: #ddd;
+  font-size: 15px;
+}
+.btn {
+  display: inline-block;
+  margin-top: 12px;
+  background: var(--accent);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.btn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 12px rgba(32, 255, 255);
+}
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+  }
+  .watermark {
+    font-size: 60px;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+      <div class="nav-list" role="menubar" aria-hidden="false">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="produk.html">Produk</a></li>
+        <li><a href="dimcord.html">Discord</a></li>
+    </nav>
+
+<section class="hero">
+  <div class="watermark">SAMP CHISATO</div>
+  <div class="hero-content">
+    <h1>Tentang Discord Kami</h1>
+    <p>Tempat berkumpulnya komunitas SAMP HOSTING CHISATOBOBA. Dapatkan info, support, dan teman baru.</p>
+  </div>
+</section>
+
+<div class="cards">
+  <div class="card">
+    <div class="icon">📢</div>
+    <div>
+      <h3>Info & Update</h3>
+      <p>Discord kami adalah pusat informasi resmi untuk semua pengumuman, update server, dan promo terbaru.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="icon">💬</div>
+    <div>
+      <h3>Komunitas Aktif</h3>
+      <p>Bergabunglah dengan komunitas pemain SAMP yang aktif. Temukan teman bermain, diskusikan strategi, atau sekadar mengobrol santai.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="icon">🎧</div>
+    <div>
+      <h3>Support 24/7</h3>
+      <p>Tim support kami selalu siap membantu Anda kapan saja melalui ticket bantuan yang ada di Discord.</p>
+      <a class="btn" href="https://discord.com/invite/MXyfW4yrtg" target="_blank">Gabung Sekarang</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
